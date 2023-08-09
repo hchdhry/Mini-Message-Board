@@ -3,19 +3,10 @@ extends layout
 block content
   h1 Form Example
 
+  a(href="/new") Create a New Message
+
   
   each obj in messages
-    p #{obj.text}, #{obj.user}, #{obj.added}
+    p #{`${obj.user}:`} #{obj.text}, #{obj.added}
 
-  // Create the form
-  form(action="/submit", method="post")
-    label(for="name") Name:
-    input(type="text", id="name", name="name")
 
-    label(for="email") Email:
-    input(type="email", id="email", name="email")
-
-    label(for="message") Message:
-    textarea(id="message", name="message", rows="4")
-
-    input(type="submit", value="Submit")

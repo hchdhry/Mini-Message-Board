@@ -15,16 +15,30 @@ const messages = [
   }
 ];
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Expres', messages: messages });
 });
 
-/* GET messages page. */
 router.get('/messages', function(req, res, next) {
   res.render("form", { title: 'Messages', messages: messages });
 });
-router.get("/new",function(req,res,next){
-  res.render("form")
+
+router.get("/new", function(req, res, next) {
+  res.render("form", { title: "New Page", messages: messages });
+});
+
+router.post("/new", function(req, res) {
+ 
+  const name = req.body.name;
+  const message = req.body.message;
+
+messages.push({
+    "text":message,
+    "user":name,
+    "added":new Date()
 })
+res.redirect('/')
+});
+
 module.exports = router;
